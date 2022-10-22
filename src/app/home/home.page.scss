@@ -1,27 +1,13 @@
-#container {
-  text-align: center;
+ion-content {
 
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
-}
-
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
-  margin: 0;
-}
-
-#container a {
-  text-decoration: none;
+  div.buttons-container {
+    margin: 40% 0;
+    text-align: center;
+    ion-button {
+      font-size: 16px;
+      height: 8rem;
+      --color: #ffff;
+      --border-color:  rgba(0,142,145,1);
+    }
+  }
 }
