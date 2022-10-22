@@ -1,0 +1,7 @@
+{
+  "name": "loving-kittens",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
