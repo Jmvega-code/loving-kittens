@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OwnersService } from '../providers/owners/owners.service';
-import { Owner } from 'src/app/interfaces/owner'
+import { Owner } from 'src/app/providers/owners/owner.model'
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-owners',
@@ -9,15 +10,35 @@ import { Owner } from 'src/app/interfaces/owner'
 })
 export class OwnersPage implements OnInit {
   loadedOwners: Owner[] = []
+  private ownersSub: Subscription;
+  selectedOwner: Owner
 
   constructor(
     private ownersService: OwnersService
   ) { }
 
   ngOnInit() {
-    this.ownersService.fetchOwners().subscribe((data) => {
-      console.log(data)
+    this.ownersService.owners.subscribe(owners => {
+      console.log(owners);
+      this.loadedOwners = owners
     })
+  }
+
+  ionViewWillEnter() {
+    this.ownersService.fetchOwners().subscribe();
+  }
+
+  onClickedOwner(ownerId) {
+    this.ownersService.getOwner(ownerId).subscribe(owner => {
+      this.selectedOwner = owner
+      console.log('clicked', owner)
+    })
+  }
+
+  onClickFavorite(selectedOwner) {
+    console.log('clicked favorite <3', selectedOwner)
+    this.ownersService.addFavoriteOwner(selectedOwner)
+    // this.selectedOwner = null
   }
 
 }

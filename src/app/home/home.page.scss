@@ -1,7 +1,6 @@
 ion-content {
-
   div.buttons-container {
-    margin: 40% 0;
+    margin: 20% 0;
     text-align: center;
     ion-button {
       font-size: 16px;
@@ -9,5 +8,8 @@ ion-content {
       --color: #ffff;
       --border-color:  rgba(0,142,145,1);
     }
+  }
+  div.footer-container {
+    text-align: center;
   }
 }
