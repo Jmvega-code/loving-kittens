@@ -4,22 +4,18 @@
       <ion-col size="6">
         <div class="list-container">
           <ion-list>
-            <ion-item *ngFor="let owner of loadedOwners" (click)='onClickedOwner(owner.id)' class="owner-item">
-              <p>
-                {{owner.name}}, {{owner.gender}}, {{owner.status}}
-              </p>
-            </ion-item>
+            <app-owner-list-item></app-owner-list-item>
           </ion-list>
         </div>
       </ion-col>
       <ion-col size="6">
-        <div class="owner-detail-container" *ngIf="selectedOwner">
+        <div class="owner-detail-container" *ngIf="selectedFavoriteOwner">
           <ion-card>
             <ion-card-content >
-              <p>{{selectedOwner.name}}</p>
-              <p>{{selectedOwner.gender}}</p>
-              <p>{{selectedOwner.status}}</p>
-              <ion-button (click)="onClickFavorite(selectedOwner)" fill="outline">
+              <p>{{selectedFavoriteOwner.name}}</p>
+              <p>{{selectedFavoriteOwner.gender}}</p>
+              <p>{{selectedFavoriteOwner.status}}</p>
+              <ion-button (click)="onClickFavorite(selectedFavoriteOwner)" fill="outline">
                 Add to favorites
               </ion-button>
             </ion-card-content>

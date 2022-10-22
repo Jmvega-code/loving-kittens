@@ -5,12 +5,23 @@ import { map, tap } from 'rxjs/operators';
 import { ApiService } from '../api/api.service';
 import { Owner } from './owner.model';
 
+// const getEmptyFavoriteOwner = (): Owner => {
+//   return {
+//     id: null,
+//     name: null,
+//     email: null,
+//     gender: null,
+//     status: null
+//   }
+// }
+
 @Injectable({
   providedIn: 'root',
 })
 export class OwnersService {
   private _owners = new BehaviorSubject<Owner[]>([]);
   private _favoriteOwners = new BehaviorSubject<Owner[]>([]);
+  favoriteOwner =  new BehaviorSubject<Owner>(null)
   favoriteOwners: Owner[] = []
 
   constructor(private apiService: ApiService, private alertController: AlertController) {}
@@ -42,10 +53,11 @@ export class OwnersService {
     return this._owners.asObservable();
   }
 
-  getOwner(id: number) {
+  setFavoriteOwner(id: number) {
     return this.owners.pipe(
       map((owners) => {
-        return { ...owners.find((o) => o.id === id) };
+        return this.favoriteOwner.next({ ...owners.find((o) => o.id === id) })
+
       })
     );
   }
@@ -62,6 +74,10 @@ export class OwnersService {
       this._favoriteOwners.next(this.favoriteOwners)
     }
 
+  }
+
+  get selectedFavoriteOwner() {
+    return this.favoriteOwner.asObservable()
   }
 
   get favoriteOwnersList() {

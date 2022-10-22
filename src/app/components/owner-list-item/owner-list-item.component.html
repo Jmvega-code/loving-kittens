@@ -1,0 +1,5 @@
+<ion-item *ngFor="let owner of loadedOwners" (click)='onClickedOwner(owner.id)' class="owner-item">
+  <p>
+    {{owner.name}}, {{owner.gender}}, {{owner.status}}
+  </p>
+</ion-item>

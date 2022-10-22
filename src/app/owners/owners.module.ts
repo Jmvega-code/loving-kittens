@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { OwnersPageRoutingModule } from './owners-routing.module';
 
 import { OwnersPage } from './owners.page';
+import { OwnerListItemComponent } from '../components/owner-list-item/owner-list-item.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,9 @@ import { OwnersPage } from './owners.page';
     IonicModule,
     OwnersPageRoutingModule
   ],
-  declarations: [OwnersPage]
+  declarations: [
+    OwnersPage,
+    OwnerListItemComponent
+  ]
 })
 export class OwnersPageModule {}
