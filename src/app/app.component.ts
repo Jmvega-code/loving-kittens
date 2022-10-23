@@ -23,14 +23,16 @@ export class AppComponent implements OnInit {
   }
 
   onOpenfavoriteModal() {
-    console.log(this.ownerService.favoriteOwnersList)
-    this.modalController
-    .create({
-      component: FavoritesModalComponent,
-    })
-    .then((modalEl) => {
-      modalEl.present();
+    if(this.favoriteCount) {
+      console.log(this.ownerService.favoriteOwnersList)
+      this.modalController
+      .create({
+        component: FavoritesModalComponent,
+      })
+      .then((modalEl) => {
+        modalEl.present();
+      }
+    );
     }
-  );
   }
 }

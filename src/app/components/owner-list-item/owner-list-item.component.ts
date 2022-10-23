@@ -10,6 +10,7 @@ import { OwnersService } from 'src/app/providers/owners/owners.service';
 export class OwnerListItemComponent implements OnInit {
   loadedOwners: Owner[] = []
   selectedOwner: Owner
+  currentSelected: number = null;
 
   constructor(
     private ownersService: OwnersService
@@ -23,10 +24,9 @@ export class OwnerListItemComponent implements OnInit {
   }
 
 
-  onClickedOwner(ownerId) {
-    this.ownersService.setFavoriteOwner(ownerId).subscribe(owner => {
+  onClickedOwnerDetails(ownerId) {
+    this.ownersService.setClickedOwnerForDetails(ownerId).subscribe(owner => {
       console.log('clicked', owner)
-      // this.selectedOwner = owner
     })
   }
 }

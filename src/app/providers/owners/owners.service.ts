@@ -37,7 +37,8 @@ export class OwnersService {
               resData[item].name,
               resData[item].email,
               resData[item].gender,
-              resData[item].status
+              resData[item].status,
+              false
             )
           );
         }
@@ -53,7 +54,8 @@ export class OwnersService {
     return this._owners.asObservable();
   }
 
-  setFavoriteOwner(id: number) {
+  setClickedOwnerForDetails(id: number) {
+    // Todo hacer una llamada nueva a la API de update del usuario
     return this.owners.pipe(
       map((owners) => {
         return this.favoriteOwner.next({ ...owners.find((o) => o.id === id) })
@@ -68,12 +70,11 @@ export class OwnersService {
       this.presentAlert()
     } else {
       this.favoriteOwners.push(
-        new Owner(owner.id, owner.name, owner.email, owner.gender, owner.status)
+        new Owner(owner.id, owner.name, owner.email, owner.gender, owner.status, true)
       );
       console.log('fav arrary', this.favoriteOwners)
       this._favoriteOwners.next(this.favoriteOwners)
     }
-
   }
 
   get selectedFavoriteOwner() {

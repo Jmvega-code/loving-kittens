@@ -11,7 +11,7 @@
           </ion-col>
           <ion-col size="6">
             <ion-item>
-              <ion-badge class="badge-heart">{{favoriteCount}}</ion-badge>
+              <ion-badge class="badge-heart" *ngIf="favoriteCount">{{favoriteCount}}</ion-badge>
               <ion-icon
                 slot="end"
                 name="heart-outline"

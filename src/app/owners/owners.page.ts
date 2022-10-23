@@ -8,27 +8,14 @@ import { Owner } from 'src/app/providers/owners/owner.model'
   styleUrls: ['./owners.page.scss'],
 })
 export class OwnersPage implements OnInit {
-  selectedFavoriteOwner: Owner
+
 
   constructor(
     private ownersService: OwnersService
   ) { }
 
   ngOnInit() {
-    this.ownersService.selectedFavoriteOwner.subscribe((favoriteOwner) => {
-      console.log('favoriteOwner', favoriteOwner)
-      this.selectedFavoriteOwner = favoriteOwner
-    })
-  }
-
-  ionViewWillEnter() {
     this.ownersService.fetchOwners().subscribe();
-  }
-
-
-  onClickFavorite(selectedOwner) {
-    console.log('clicked favorite <3', selectedOwner)
-    this.ownersService.addFavoriteOwner(selectedOwner)
   }
 
 }

@@ -8,6 +8,7 @@ import { OwnersPageRoutingModule } from './owners-routing.module';
 
 import { OwnersPage } from './owners.page';
 import { OwnerListItemComponent } from '../components/owner-list-item/owner-list-item.component';
+import { OwnerDetailsCardComponent } from '../components/owner-details-card/owner-details-card.component';
 
 @NgModule({
   imports: [
@@ -18,7 +19,8 @@ import { OwnerListItemComponent } from '../components/owner-list-item/owner-list
   ],
   declarations: [
     OwnersPage,
-    OwnerListItemComponent
+    OwnerListItemComponent,
+    OwnerDetailsCardComponent
   ]
 })
 export class OwnersPageModule {}

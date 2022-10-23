@@ -1,5 +1,12 @@
-<ion-item *ngFor="let owner of loadedOwners" (click)='onClickedOwner(owner.id)' class="owner-item">
-  <p>
-    {{owner.name}}, {{owner.gender}}, {{owner.status}}
-  </p>
+<ion-item
+  *ngFor="let owner of loadedOwners; index as i"
+  (click)="onClickedOwnerDetails(owner.id); currentSelected = i"
+  class="owner-item"
+  [ngStyle]="{
+    '--ion-item-background':
+      currentSelected == i ? 'rgba(0, 172, 180, 0.25)' : null
+  }"
+  [ngClass]="{'inactive': owner.status === 'inactive'}"
+>
+  <p>{{ owner.name }}, {{ owner.gender }}, {{ owner.status }}</p>
 </ion-item>

@@ -2,12 +2,7 @@ ion-content {
   ion-grid {
     margin-top: 5.5rem;
   }
-  ion-item.owner-item:active {
-    --ion-item-background: rgba(0, 172, 180, 0.25);
-    p {
-      color: white;
-    }
-  }
+
   div.owner-detail-container {
     p {
       text-align: left;
