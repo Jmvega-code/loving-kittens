@@ -7,20 +7,18 @@ import { IonicModule } from '@ionic/angular';
 import { SearchPageRoutingModule } from './search-routing.module';
 
 import { SearchPage } from './search.page';
-import { OwnerListItemComponent } from '../components/owner-list-item/owner-list-item.component';
-import { OwnerDetailsCardComponent } from '../components/owner-details-card/owner-details-card.component';
+import { SharedModule } from '../modules/shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    SearchPageRoutingModule
+    SearchPageRoutingModule,
+    SharedModule
   ],
   declarations: [
     SearchPage,
-    OwnerListItemComponent,
-    OwnerDetailsCardComponent
   ]
 })
 export class SearchPageModule {}

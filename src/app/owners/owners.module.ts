@@ -7,20 +7,19 @@ import { IonicModule } from '@ionic/angular';
 import { OwnersPageRoutingModule } from './owners-routing.module';
 
 import { OwnersPage } from './owners.page';
-import { OwnerListItemComponent } from '../components/owner-list-item/owner-list-item.component';
-import { OwnerDetailsCardComponent } from '../components/owner-details-card/owner-details-card.component';
+
+import { SharedModule } from '../modules/shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    OwnersPageRoutingModule
+    OwnersPageRoutingModule,
+    SharedModule
   ],
   declarations: [
     OwnersPage,
-    OwnerListItemComponent,
-    OwnerDetailsCardComponent
   ]
 })
 export class OwnersPageModule {}
