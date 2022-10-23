@@ -5,28 +5,17 @@ import { map, tap } from 'rxjs/operators';
 import { ApiService } from '../api/api.service';
 import { Owner } from './owner.model';
 
-// const getEmptyFavoriteOwner = (): Owner => {
-//   return {
-//     id: null,
-//     name: null,
-//     email: null,
-//     gender: null,
-//     status: null
-//   }
-// }
-
 @Injectable({
   providedIn: 'root',
 })
 export class OwnersService {
   private _owners = new BehaviorSubject<Owner[]>([]);
   private _favoriteOwners = new BehaviorSubject<Owner[]>([]);
-  // private _searchResults = new BehaviorSubject<Owner[]>([]);
   favoriteOwner = new BehaviorSubject<Owner>(null);
+  killedCatsCount = new BehaviorSubject<number>(0);
   favoriteOwners: Owner[] = [];
   fetchedowners: Owner[] = [];
   searchResults: Owner[] = [];
-  killedCatsCount = new BehaviorSubject<number>(0);
 
   constructor(
     private apiService: ApiService,
@@ -54,7 +43,6 @@ export class OwnersService {
       }),
       tap((owners) => {
         this._owners.next(owners);
-        console.log('nuevos owners?', this._owners);
       })
     );
   }
@@ -134,52 +122,21 @@ export class OwnersService {
     );
   }
 
-  searchOwner(
-    // mod?:string,
-    // page?: number,
-    // numItems?: number,
-    // query?:string
-    results: Owner[]
-  ) {
-    // return this.apiService.get(mod, page, numItems, query).pipe(
-    //   map((resData) => {
-    //     let counterVal = this.killedCatsCount.value
-    //     this.killedCatsCount.next(counterVal + 1)
-    //     for (let item in resData) {
-    //       this.fetchedowners.push(
-    //         new Owner(
-    //           resData[item].id,
-    //           resData[item].name,
-    //           resData[item].email,
-    //           resData[item].gender,
-    //           resData[item].status,
-    //           false
-    //         )
-    //       );
-    //     }
-    //     return this.fetchedowners;
-    //   }),
-    //   tap((owners) => {
-    //     this._owners.next(owners);
-    //     console.log('nuevos owners?', this._owners)
-    //   })
-    // );
-
+  searchOwner(results: Owner[]) {
     for (let item in results) {
       this.searchResults.push(
-                new Owner(
-                  results[item].id,
-                  results[item].name,
-                  results[item].email,
-                  results[item].gender,
-                  results[item].status,
-                  false
-                )
-              );
-            }
-            console.log('resultados busqueda', this.searchResults)
-            return this._owners.next(this.searchResults);
-
+        new Owner(
+          results[item].id,
+          results[item].name,
+          results[item].email,
+          results[item].gender,
+          results[item].status,
+          false
+        )
+      );
+    }
+    console.log('resultados busqueda', this.searchResults);
+    return this._owners.next(this.searchResults);
   }
 
   async presentAlert() {
