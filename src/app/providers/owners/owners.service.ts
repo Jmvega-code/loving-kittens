@@ -123,6 +123,7 @@ export class OwnersService {
   }
 
   searchOwner(results: Owner[]) {
+    this.searchResults = []
     for (let item in results) {
       this.searchResults.push(
         new Owner(

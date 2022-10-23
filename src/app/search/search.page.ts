@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { OwnersService } from '../providers/owners/owners.service';
 import { Owner } from 'src/app/providers/owners/owner.model';
 import { LoadingController } from '@ionic/angular';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-search',
@@ -12,6 +13,7 @@ export class SearchPage implements OnInit {
   loadedOwners: Owner[] = [];
   numPage: number = 1;
   public results = [...this.loadedOwners]
+  ownersSub: Subscription
 
   constructor(
     private ownersService: OwnersService,
@@ -26,7 +28,7 @@ export class SearchPage implements OnInit {
       })
       .then((loadingEl) => {
         loadingEl.present();
-        this.ownersService.fetchOwners('users').subscribe((data) => {
+        this.ownersSub = this.ownersService.fetchOwners('users').subscribe((data) => {
           loadingEl.dismiss();
           this.loadedOwners = data;
         });
