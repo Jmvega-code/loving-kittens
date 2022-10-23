@@ -22,7 +22,10 @@ export class OwnersService {
     private alertController: AlertController
   ) {}
 
-  fetchOwners(mod?: string, page?: number, numItems?: number) {
+  fetchOwners(mod?: string, page?: number, numItems?: number, reset?: boolean) {
+    if (reset) {
+      this.fetchedowners = []
+    }
     return this.apiService.get(mod, page, numItems).pipe(
       map((resData) => {
         let counterVal = this.killedCatsCount.value;
@@ -46,6 +49,7 @@ export class OwnersService {
       })
     );
   }
+
 
   get owners() {
     return this._owners.asObservable();
@@ -83,7 +87,6 @@ export class OwnersService {
   }
 
   addFavoriteOwner(owner) {
-    console.log('this.favoriteOwners', this.favoriteOwners);
     if (this.favoriteOwners.find((o) => o.id === owner.id)) {
       this.presentAlert();
     } else {
@@ -97,7 +100,6 @@ export class OwnersService {
           true
         )
       );
-      console.log('fav arrary', this.favoriteOwners);
       this._favoriteOwners.next(this.favoriteOwners);
     }
   }
@@ -136,7 +138,6 @@ export class OwnersService {
         )
       );
     }
-    console.log('resultados busqueda', this.searchResults);
     return this._owners.next(this.searchResults);
   }
 

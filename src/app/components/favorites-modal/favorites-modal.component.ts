@@ -23,7 +23,6 @@ export class FavoritesModalComponent implements OnInit {
 
   onClickDeleteOwner(ownerId: number, slidingEl: IonItemSliding) {
     slidingEl.close();
-    console.log('trash clicked', ownerId);
     this.ownersService.deleteFavoriteOwner(ownerId).subscribe()
   }
 

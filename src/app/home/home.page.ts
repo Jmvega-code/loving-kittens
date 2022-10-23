@@ -13,12 +13,10 @@ export class HomePage {
   ) {}
 
   onClickOwners() {
-    console.log('owners')
     this.router.navigateByUrl('/owners')
   }
 
   onClickSearch() {
-    console.log('search')
     this.router.navigateByUrl('/search')
   }
 

@@ -17,7 +17,6 @@ export class ApiService {
 
   get(mod: string, page: number = 1, numItems: number= 20, query?: string) {
     if(query){
-      console.log('lleva query')
       return this.http.get(`${this.url}${mod}?name=${query}?page=${page}&per_page=${numItems}?access-token=${this.accessToken}`);
     } else {
       return this.http.get(`${this.url}${mod}?page=${page}&per_page=${numItems}?access-token=${this.accessToken}`);

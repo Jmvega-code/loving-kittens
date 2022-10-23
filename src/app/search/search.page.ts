@@ -53,7 +53,6 @@ export class SearchPage implements OnInit {
 
   onSearchChange(event) {
     const query: string = event.detail.value.toLowerCase();
-    console.log(query)
     if (query.length > 1) {
       this.loadingController
         .create({
@@ -62,19 +61,13 @@ export class SearchPage implements OnInit {
         })
         .then((loadingEl) => {
           loadingEl.present();
-          // this.ownersService
-          //   .searchOwner('users', 1, 10, query)
-          //   .subscribe((data) => {
-          //     console.log(data);
-          //     loadingEl.dismiss();
-          //   });
           this.results = this.loadedOwners.filter(d => d.name.toLowerCase().indexOf(query) > -1)
           console.log(this.results)
           this.ownersService.searchOwner(this.results)
           loadingEl.dismiss();
         });
     } else {
-      this.ownersService.fetchOwners('users').subscribe((data) => {
+      this.ownersService.fetchOwners('users',1,20, true).subscribe((data) => {
         this.loadedOwners = data;
 
       });

@@ -28,7 +28,6 @@ export class AppComponent implements OnInit {
 
   onOpenfavoriteModal() {
     if(this.favoriteCount) {
-      console.log(this.ownerService.favoriteOwnersList)
       this.modalController
       .create({
         component: FavoritesModalComponent,

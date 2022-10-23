@@ -20,7 +20,6 @@ export class OwnerListItemComponent implements OnInit {
 
   ngOnInit() {
     this.ownersService.owners.subscribe((owners) => {
-      console.log(owners);
       this.loadedOwners = owners;
     });
   }
