@@ -36,7 +36,6 @@ export class OwnersService {
       map((resData) => {
         let counterVal = this.killedCatsCount.value
         this.killedCatsCount.next(counterVal + 1)
-        // console.log('killedcats!!!!!!',this.killedCatsCount)
         for (let item in resData) {
           this.fetchedowners.push(
             new Owner(
@@ -87,9 +86,7 @@ export class OwnersService {
               resData.status,
               true
             )
-        )
-        }
-        console.log('favoriteOwnerrrrr',this.favoriteOwner);
+        )}
       })
     )
   }

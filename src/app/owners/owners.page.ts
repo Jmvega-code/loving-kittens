@@ -38,10 +38,8 @@ export class OwnersPage implements OnInit {
       (data) => {
         console.log(data);
         if (data.length === 0) {
-          // Si ya no existen registros, cancelamos el scroll infinito.
           event.target.disabled = true;
         }
-        // Completamos el evento.
         event.target.complete();
       },
       (err) => {
