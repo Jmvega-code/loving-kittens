@@ -21,21 +21,23 @@ import { Owner } from './owner.model';
 export class OwnersService {
   private _owners = new BehaviorSubject<Owner[]>([]);
   private _favoriteOwners = new BehaviorSubject<Owner[]>([]);
+  // private _searchResults = new BehaviorSubject<Owner[]>([]);
   favoriteOwner = new BehaviorSubject<Owner>(null);
   favoriteOwners: Owner[] = [];
   fetchedowners: Owner[] = [];
-  killedCatsCount = new BehaviorSubject<number>(0)
+  searchResults: Owner[] = [];
+  killedCatsCount = new BehaviorSubject<number>(0);
 
   constructor(
     private apiService: ApiService,
-    private alertController: AlertController,
+    private alertController: AlertController
   ) {}
 
-  fetchOwners(mod?:string, page?: number, numItems?: number) {
+  fetchOwners(mod?: string, page?: number, numItems?: number) {
     return this.apiService.get(mod, page, numItems).pipe(
       map((resData) => {
-        let counterVal = this.killedCatsCount.value
-        this.killedCatsCount.next(counterVal + 1)
+        let counterVal = this.killedCatsCount.value;
+        this.killedCatsCount.next(counterVal + 1);
         for (let item in resData) {
           this.fetchedowners.push(
             new Owner(
@@ -52,7 +54,7 @@ export class OwnersService {
       }),
       tap((owners) => {
         this._owners.next(owners);
-        console.log('nuevos owners?', this._owners)
+        console.log('nuevos owners?', this._owners);
       })
     );
   }
@@ -64,18 +66,18 @@ export class OwnersService {
   setClickedOwnerForDetails(id: number) {
     return this.apiService.get(`users/${id}`).pipe(
       map((resData: Owner) => {
-        let counterVal = this.killedCatsCount.value
-        this.killedCatsCount.next(counterVal + 1)
+        let counterVal = this.killedCatsCount.value;
+        this.killedCatsCount.next(counterVal + 1);
         this.favoriteOwner.next(
-            new Owner(
-              resData.id,
-              resData.name,
-              resData.email,
-              resData.gender,
-              resData.status,
-              false
-            )
-        )
+          new Owner(
+            resData.id,
+            resData.name,
+            resData.email,
+            resData.gender,
+            resData.status,
+            false
+          )
+        );
         if (this.favoriteOwners.find((o) => o.id === resData.id)) {
           this.favoriteOwner.next(
             new Owner(
@@ -86,9 +88,10 @@ export class OwnersService {
               resData.status,
               true
             )
-        )}
+          );
+        }
       })
-    )
+    );
   }
 
   addFavoriteOwner(owner) {
@@ -120,15 +123,63 @@ export class OwnersService {
   }
 
   get deadCats() {
-    return this.killedCatsCount.asObservable()
+    return this.killedCatsCount.asObservable();
   }
 
   deleteFavoriteOwner(ownerId) {
     return this._favoriteOwners.pipe(
-      tap(owners => {
-        this._favoriteOwners.next(owners.filter((i) => i.id !== ownerId))
+      tap((owners) => {
+        this._favoriteOwners.next(owners.filter((i) => i.id !== ownerId));
       })
-    )
+    );
+  }
+
+  searchOwner(
+    // mod?:string,
+    // page?: number,
+    // numItems?: number,
+    // query?:string
+    results: Owner[]
+  ) {
+    // return this.apiService.get(mod, page, numItems, query).pipe(
+    //   map((resData) => {
+    //     let counterVal = this.killedCatsCount.value
+    //     this.killedCatsCount.next(counterVal + 1)
+    //     for (let item in resData) {
+    //       this.fetchedowners.push(
+    //         new Owner(
+    //           resData[item].id,
+    //           resData[item].name,
+    //           resData[item].email,
+    //           resData[item].gender,
+    //           resData[item].status,
+    //           false
+    //         )
+    //       );
+    //     }
+    //     return this.fetchedowners;
+    //   }),
+    //   tap((owners) => {
+    //     this._owners.next(owners);
+    //     console.log('nuevos owners?', this._owners)
+    //   })
+    // );
+
+    for (let item in results) {
+      this.searchResults.push(
+                new Owner(
+                  results[item].id,
+                  results[item].name,
+                  results[item].email,
+                  results[item].gender,
+                  results[item].status,
+                  false
+                )
+              );
+            }
+            console.log('resultados busqueda', this.searchResults)
+            return this._owners.next(this.searchResults);
+
   }
 
   async presentAlert() {

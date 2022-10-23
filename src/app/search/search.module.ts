@@ -7,6 +7,8 @@ import { IonicModule } from '@ionic/angular';
 import { SearchPageRoutingModule } from './search-routing.module';
 
 import { SearchPage } from './search.page';
+import { OwnerListItemComponent } from '../components/owner-list-item/owner-list-item.component';
+import { OwnerDetailsCardComponent } from '../components/owner-details-card/owner-details-card.component';
 
 @NgModule({
   imports: [
@@ -15,6 +17,10 @@ import { SearchPage } from './search.page';
     IonicModule,
     SearchPageRoutingModule
   ],
-  declarations: [SearchPage]
+  declarations: [
+    SearchPage,
+    OwnerListItemComponent,
+    OwnerDetailsCardComponent
+  ]
 })
 export class SearchPageModule {}
