@@ -21,17 +21,24 @@ import { Owner } from './owner.model';
 export class OwnersService {
   private _owners = new BehaviorSubject<Owner[]>([]);
   private _favoriteOwners = new BehaviorSubject<Owner[]>([]);
-  favoriteOwner =  new BehaviorSubject<Owner>(null)
-  favoriteOwners: Owner[] = []
+  favoriteOwner = new BehaviorSubject<Owner>(null);
+  favoriteOwners: Owner[] = [];
+  fetchedowners: Owner[] = [];
+  killedCatsCount = new BehaviorSubject<number>(0)
 
-  constructor(private apiService: ApiService, private alertController: AlertController) {}
+  constructor(
+    private apiService: ApiService,
+    private alertController: AlertController,
+  ) {}
 
-  fetchOwners() {
-    return this.apiService.get('users').pipe(
+  fetchOwners(mod?:string, page?: number, numItems?: number) {
+    return this.apiService.get(mod, page, numItems).pipe(
       map((resData) => {
-        const owners = [];
+        let counterVal = this.killedCatsCount.value
+        this.killedCatsCount.next(counterVal + 1)
+        // console.log('killedcats!!!!!!',this.killedCatsCount)
         for (let item in resData) {
-          owners.push(
+          this.fetchedowners.push(
             new Owner(
               resData[item].id,
               resData[item].name,
@@ -42,10 +49,11 @@ export class OwnersService {
             )
           );
         }
-        return owners;
+        return this.fetchedowners;
       }),
       tap((owners) => {
         this._owners.next(owners);
+        console.log('nuevos owners?', this._owners)
       })
     );
   }
@@ -55,44 +63,84 @@ export class OwnersService {
   }
 
   setClickedOwnerForDetails(id: number) {
-    // Todo hacer una llamada nueva a la API de update del usuario
-    return this.owners.pipe(
-      map((owners) => {
-        return this.favoriteOwner.next({ ...owners.find((o) => o.id === id) })
-
+    return this.apiService.get(`users/${id}`).pipe(
+      map((resData: Owner) => {
+        let counterVal = this.killedCatsCount.value
+        this.killedCatsCount.next(counterVal + 1)
+        this.favoriteOwner.next(
+            new Owner(
+              resData.id,
+              resData.name,
+              resData.email,
+              resData.gender,
+              resData.status,
+              false
+            )
+        )
+        if (this.favoriteOwners.find((o) => o.id === resData.id)) {
+          this.favoriteOwner.next(
+            new Owner(
+              resData.id,
+              resData.name,
+              resData.email,
+              resData.gender,
+              resData.status,
+              true
+            )
+        )
+        }
+        console.log('favoriteOwnerrrrr',this.favoriteOwner);
       })
-    );
+    )
   }
 
   addFavoriteOwner(owner) {
-    console.log('this.favoriteOwners',this.favoriteOwners)
-    if(this.favoriteOwners.find((o) => o.id === owner.id)) {
-      this.presentAlert()
+    console.log('this.favoriteOwners', this.favoriteOwners);
+    if (this.favoriteOwners.find((o) => o.id === owner.id)) {
+      this.presentAlert();
     } else {
       this.favoriteOwners.push(
-        new Owner(owner.id, owner.name, owner.email, owner.gender, owner.status, true)
+        new Owner(
+          owner.id,
+          owner.name,
+          owner.email,
+          owner.gender,
+          owner.status,
+          true
+        )
       );
-      console.log('fav arrary', this.favoriteOwners)
-      this._favoriteOwners.next(this.favoriteOwners)
+      console.log('fav arrary', this.favoriteOwners);
+      this._favoriteOwners.next(this.favoriteOwners);
     }
   }
 
   get selectedFavoriteOwner() {
-    return this.favoriteOwner.asObservable()
+    return this.favoriteOwner.asObservable();
   }
 
   get favoriteOwnersList() {
-    return this._favoriteOwners.asObservable()
+    return this._favoriteOwners.asObservable();
   }
 
+  get deadCats() {
+    return this.killedCatsCount.asObservable()
+  }
+
+  deleteFavoriteOwner(ownerId) {
+    return this._favoriteOwners.pipe(
+      tap(owners => {
+        this._favoriteOwners.next(owners.filter((i) => i.id !== ownerId))
+      })
+    )
+  }
 
   async presentAlert() {
     const alert = await this.alertController.create({
-    message: 'This owner is already in your list. Please, select a different owner.',
-    subHeader: 'Oops!',
-    buttons: ['Dismiss']
-   });
-   await alert.present();
-}
-
+      message:
+        'This owner is already in your list. Please, select a different owner.',
+      subHeader: 'Oops!',
+      buttons: ['Dismiss'],
+    });
+    await alert.present();
+  }
 }

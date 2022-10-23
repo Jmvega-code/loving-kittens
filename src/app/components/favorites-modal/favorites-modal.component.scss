@@ -1,8 +1,11 @@
 ion-col.title {
   text-align: center;
 }
+ion-item.inactive {
+  color: rgba(0, 172, 180, 0.25)
+}
 
-ion-icon {
+ion-icon.heart {
   font-size: 34px;
   color: rgba(0,142,145,1);
   margin: 0;

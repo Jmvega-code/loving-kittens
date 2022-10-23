@@ -1,10 +1,20 @@
 <div class="owner-detail-container" *ngIf="selectedFavoriteOwner">
-  <ion-card>
-    <ion-card-content >
-      <p>{{selectedFavoriteOwner.name}}</p>
-      <p>{{selectedFavoriteOwner.gender}}</p>
-      <p>{{selectedFavoriteOwner.status}}</p>
-      <ion-button (click)="onClickFavorite(selectedFavoriteOwner)" fill="outline">
+  <ion-card class="fixed">
+    <ion-card-content>
+      <p>Name: {{ selectedFavoriteOwner.name }}
+        <ion-icon
+          slot="start"
+          name="heart"
+          *ngIf="selectedFavoriteOwner.favorite"
+        ></ion-icon></p>
+      <p>Gender: {{ selectedFavoriteOwner.gender }}</p>
+      <p>Email: {{ selectedFavoriteOwner.email }}</p>
+      <p>Status: {{ selectedFavoriteOwner.status }}</p>
+
+      <ion-button
+        (click)="onClickFavorite(selectedFavoriteOwner)"
+        fill="outline"
+      >
         Add to favorites
       </ion-button>
     </ion-card-content>

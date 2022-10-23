@@ -6,6 +6,12 @@
           <ion-list>
             <app-owner-list-item></app-owner-list-item>
           </ion-list>
+          <div *ngIf="loadedOwners.length !== 0">
+            <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+              <ion-infinite-scroll-content loadingSpinner="dots" loadingText="">
+              </ion-infinite-scroll-content>
+            </ion-infinite-scroll>
+          </div>
         </div>
       </ion-col>
       <ion-col size="6">

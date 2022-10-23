@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { IonItemSliding } from '@ionic/angular';
 import { Owner } from 'src/app/providers/owners/owner.model';
 import { OwnersService } from 'src/app/providers/owners/owners.service';
 
@@ -17,8 +18,13 @@ export class FavoritesModalComponent implements OnInit {
   ngOnInit() {
     this.ownersService.favoriteOwnersList.subscribe(favList => {
       this.favoriteList = favList
-    }
-    )
+    })
+  }
+
+  onClickDeleteOwner(ownerId: number, slidingEl: IonItemSliding) {
+    slidingEl.close();
+    console.log('trash clicked', ownerId);
+    this.ownersService.deleteFavoriteOwner(ownerId).subscribe()
   }
 
 }

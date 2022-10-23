@@ -10,6 +10,7 @@ import { OwnersService } from './providers/owners/owners.service';
 })
 export class AppComponent implements OnInit {
   favoriteCount: number = 0
+  deadCats = 0
 
   constructor(
     private ownerService: OwnersService,
@@ -19,6 +20,9 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.ownerService.favoriteOwnersList.subscribe(favoriteList => {
       this.favoriteCount = favoriteList.length
+    })
+    this.ownerService.deadCats.subscribe(data => {
+      this.deadCats = data
     })
   }
 
