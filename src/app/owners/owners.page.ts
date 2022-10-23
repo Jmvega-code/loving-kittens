@@ -28,6 +28,8 @@ export class OwnersPage implements OnInit {
         this.ownersService.fetchOwners('users').subscribe((data) => {
           loadingEl.dismiss();
           this.loadedOwners = data;
+        }, error => {
+          console.log(error);
         });
       });
   }
@@ -42,8 +44,8 @@ export class OwnersPage implements OnInit {
         }
         event.target.complete();
       },
-      (err) => {
-        console.log(err);
+      (error) => {
+        console.log(error);
       }
     );
   }

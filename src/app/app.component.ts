@@ -20,10 +20,14 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.ownerService.favoriteOwnersList.subscribe(favoriteList => {
       this.favoriteCount = favoriteList.length
-    })
+    }, error => {
+      console.log(error);
+    });
     this.ownerService.deadCats.subscribe(data => {
       this.deadCats = data
-    })
+    }, error => {
+      console.log(error);
+    });
   }
 
   onOpenfavoriteModal() {

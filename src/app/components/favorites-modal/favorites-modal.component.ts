@@ -18,7 +18,9 @@ export class FavoritesModalComponent implements OnInit {
   ngOnInit() {
     this.ownersService.favoriteOwnersList.subscribe(favList => {
       this.favoriteList = favList
-    })
+    }, error => {
+      console.log(error);
+    });
   }
 
   onClickDeleteOwner(ownerId: number, slidingEl: IonItemSliding) {

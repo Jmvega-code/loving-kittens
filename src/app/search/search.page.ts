@@ -31,6 +31,8 @@ export class SearchPage implements OnInit {
         this.ownersSub = this.ownersService.fetchOwners('users').subscribe((data) => {
           loadingEl.dismiss();
           this.loadedOwners = data;
+        }, error => {
+          console.log(error);
         });
       });
   }
@@ -45,8 +47,8 @@ export class SearchPage implements OnInit {
         }
         event.target.complete();
       },
-      (err) => {
-        console.log(err);
+      (error) => {
+        console.log(error);
       }
     );
   }
@@ -69,7 +71,8 @@ export class SearchPage implements OnInit {
     } else {
       this.ownersService.fetchOwners('users',1,20, true).subscribe((data) => {
         this.loadedOwners = data;
-
+      }, error => {
+        console.log(error);
       });
     }
   }

@@ -21,6 +21,8 @@ export class OwnerListItemComponent implements OnInit {
   ngOnInit() {
     this.ownersService.owners.subscribe((owners) => {
       this.loadedOwners = owners;
+    }, error => {
+      console.log(error);
     });
   }
 
@@ -37,6 +39,8 @@ export class OwnerListItemComponent implements OnInit {
           .subscribe((owner) => {
             console.log('clicked', owner);
             loadingEl.dismiss();
+          }, error => {
+            console.log(error);
           });
       });
   }
