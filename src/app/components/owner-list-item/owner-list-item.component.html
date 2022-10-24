@@ -1,6 +1,6 @@
 <ion-item
   *ngFor="let owner of loadedOwners; index as i"
-  (click)="onClickedOwnerDetails(owner.id); currentSelected = i"
+  (click)="onClickedOwnerDetails(owner); currentSelected = i"
   class="owner-item"
   [ngStyle]="{
     '--ion-item-background':

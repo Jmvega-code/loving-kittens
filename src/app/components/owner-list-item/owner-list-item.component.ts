@@ -12,6 +12,7 @@ export class OwnerListItemComponent implements OnInit {
   loadedOwners: Owner[] = [];
   selectedOwner: Owner;
   currentSelected: number = null;
+  firstCallDate = new Date()
 
   constructor(
     private ownersService: OwnersService,
@@ -26,22 +27,38 @@ export class OwnerListItemComponent implements OnInit {
     });
   }
 
-  onClickedOwnerDetails(ownerId) {
-    this.loadingController
-      .create({
-        message: 'Loading details...',
-        spinner: 'crescent',
-      })
-      .then((loadingEl) => {
-        loadingEl.present();
-        this.ownersService
-          .setClickedOwnerForDetails(ownerId)
-          .subscribe((owner) => {
-            console.log('clicked', owner);
-            loadingEl.dismiss();
-          }, error => {
-            console.log(error);
-          });
-      });
+  onClickedOwnerDetails(owner) {
+    const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+    console.log(weekday[this.firstCallDate.getDay()])
+    if(weekday[this.firstCallDate.getDay()] === 'Monday' || weekday[this.firstCallDate.getDay()] === 'Thursday') {
+      this.loadingController
+        .create({
+          message: 'Loading details...',
+          spinner: 'crescent',
+        })
+        .then((loadingEl) => {
+          loadingEl.present();
+          this.ownersService
+            .setClickedOwnerForDetails(owner.id)
+            .subscribe((owner) => {
+              console.log('clicked', owner);
+              loadingEl.dismiss();
+            }, error => {
+              console.log(error);
+            });
+        });
+    } else {
+      this.loadingController
+        .create({
+          message: 'Loading details...',
+          spinner: 'crescent',
+        })
+        .then((loadingEl) => {
+          loadingEl.present();
+          this.ownersService
+            .setClickedOwnerForDetails(owner);
+            loadingEl.dismiss()
+        });
+    }
   }
 }

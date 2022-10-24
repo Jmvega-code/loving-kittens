@@ -55,22 +55,12 @@ export class OwnersService {
     return this._owners.asObservable();
   }
 
-  setClickedOwnerForDetails(id: number) {
-    return this.apiService.get(`users/${id}`).pipe(
-      map((resData: Owner) => {
-        let counterVal = this.killedCatsCount.value;
-        this.killedCatsCount.next(counterVal + 1);
-        this.favoriteOwner.next(
-          new Owner(
-            resData.id,
-            resData.name,
-            resData.email,
-            resData.gender,
-            resData.status,
-            false
-          )
-        );
-        if (this.favoriteOwners.find((o) => o.id === resData.id)) {
+  setClickedOwnerForDetails(owner?: Owner, id?: number) {
+    if(id) {
+      return this.apiService.get(`users/${id}`).pipe(
+        map((resData: Owner) => {
+          let counterVal = this.killedCatsCount.value;
+          this.killedCatsCount.next(counterVal + 1);
           this.favoriteOwner.next(
             new Owner(
               resData.id,
@@ -78,12 +68,39 @@ export class OwnersService {
               resData.email,
               resData.gender,
               resData.status,
-              true
+              false
             )
           );
-        }
-      })
-    );
+          if (this.favoriteOwners.find((o) => o.id === resData.id)) {
+            this.favoriteOwner.next(
+              new Owner(
+                resData.id,
+                resData.name,
+                resData.email,
+                resData.gender,
+                resData.status,
+                true
+              )
+            );
+          }
+        })
+      );
+    } else {
+      this.favoriteOwner.next(owner)
+      if (this.favoriteOwners.find((o) => o.id === owner.id)) {
+        this.favoriteOwner.next(
+          new Owner(
+            owner.id,
+            owner.name,
+            owner.email,
+            owner.gender,
+            owner.status,
+            true
+          )
+        );
+      }
+    }
+
   }
 
   addFavoriteOwner(owner) {

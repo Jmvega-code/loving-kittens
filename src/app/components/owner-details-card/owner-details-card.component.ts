@@ -17,9 +17,7 @@ export class OwnerDetailsCardComponent implements OnInit {
   ngOnInit() {
     this.ownersService.selectedFavoriteOwner.subscribe((favoriteOwner) => {
       this.selectedFavoriteOwner = favoriteOwner
-    }, error => {
-      console.log(error);
-    });
+    })
   }
 
   onClickFavorite(selectedOwner) {
