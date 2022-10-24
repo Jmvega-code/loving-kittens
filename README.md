@@ -38,3 +38,5 @@ Sin embargo, he añadido cosas que sí me han parecido necesarias:
 4- Añadí una foto del gato de cada usuario usando un web service que genera imágenes por id
 
 5- Para diferenciar los usuarios según su status activos o no, a la info de usuarios que estaban 'inactive' les he puesto un tono oscuro acorde al theme de la app.
+
+NOTA: En el momento de realizar la prueba la API '/public/v2/users?name=XXXX' que aparece como ejemplo en el documento no retornaba ninguna coincidencia independientemente de la query, por lo que hice el filtrado de la lista de dueños de forma manual. 
