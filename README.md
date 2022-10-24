@@ -19,7 +19,7 @@ $npm install
 Y finalmente montamos la app en memoria con el comando
 $ionic serve
 
-# IMPORTANTE: No te olvides de ajustar el theme de tu ordenador a darkmode para una mejor experiencia con los colores elegidos:
+# IMPORTANTE: No te olvides de ajustar el theme de tu navegador a darkmode para una mejor experiencia con los colores elegidos:
 
 chrome://settings/appearance
 
