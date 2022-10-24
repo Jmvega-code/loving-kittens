@@ -24,6 +24,7 @@ export class OwnerListItemComponent implements OnInit {
       this.loadedOwners = owners;
     }, error => {
       console.log(error);
+      this.loadingController.dismiss()
     });
   }
 
@@ -45,6 +46,7 @@ export class OwnerListItemComponent implements OnInit {
               loadingEl.dismiss();
             }, error => {
               console.log(error);
+              loadingEl.dismiss();
             });
         });
     } else {
@@ -58,6 +60,9 @@ export class OwnerListItemComponent implements OnInit {
           this.ownersService
             .setClickedOwnerForDetails(owner);
             loadingEl.dismiss()
+        }, error => {
+          console.log(error);
+          this.loadingController.dismiss()
         });
     }
   }

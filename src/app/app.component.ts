@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { LoadingController, ModalController } from '@ionic/angular';
 import { FavoritesModalComponent } from './components/favorites-modal/favorites-modal.component';
 import { OwnersService } from './providers/owners/owners.service';
 
@@ -14,7 +14,8 @@ export class AppComponent implements OnInit {
 
   constructor(
     private ownerService: OwnersService,
-    private modalController: ModalController
+    private modalController: ModalController,
+    private loadingController: LoadingController
   ) {}
 
   ngOnInit() {
@@ -22,11 +23,13 @@ export class AppComponent implements OnInit {
       this.favoriteCount = favoriteList.length
     }, error => {
       console.log(error);
+      this.loadingController.dismiss()
     });
     this.ownerService.deadCats.subscribe(data => {
       this.deadCats = data
     }, error => {
       console.log(error);
+      this.loadingController.dismiss()
     });
   }
 

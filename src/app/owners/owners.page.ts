@@ -30,6 +30,7 @@ export class OwnersPage implements OnInit {
           this.loadedOwners = data;
         }, error => {
           console.log(error);
+          loadingEl.dismiss();
         });
       });
   }
@@ -46,6 +47,7 @@ export class OwnersPage implements OnInit {
       },
       (error) => {
         console.log(error);
+        this.loadingController.dismiss()
       }
     );
   }

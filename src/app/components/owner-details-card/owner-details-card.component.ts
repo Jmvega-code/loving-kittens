@@ -9,6 +9,8 @@ import { OwnersService } from 'src/app/providers/owners/owners.service';
 })
 export class OwnerDetailsCardComponent implements OnInit {
   selectedFavoriteOwner: Owner
+  ownerId: number
+  catImage: string
 
   constructor(
     private ownersService: OwnersService

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IonItemSliding } from '@ionic/angular';
+import { IonItemSliding, LoadingController } from '@ionic/angular';
 import { Owner } from 'src/app/providers/owners/owner.model';
 import { OwnersService } from 'src/app/providers/owners/owners.service';
 
@@ -12,7 +12,8 @@ export class FavoritesModalComponent implements OnInit {
   favoriteList: Owner[] = []
 
   constructor(
-    private ownersService: OwnersService
+    private ownersService: OwnersService,
+    private loadingController: LoadingController
   ) { }
 
   ngOnInit() {
@@ -20,6 +21,7 @@ export class FavoritesModalComponent implements OnInit {
       this.favoriteList = favList
     }, error => {
       console.log(error);
+      this.loadingController.dismiss()
     });
   }
 

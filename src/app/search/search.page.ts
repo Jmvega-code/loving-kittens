@@ -33,6 +33,7 @@ export class SearchPage implements OnInit {
           this.loadedOwners = data;
         }, error => {
           console.log(error);
+          loadingEl.dismiss();
         });
       });
   }
@@ -49,6 +50,7 @@ export class SearchPage implements OnInit {
       },
       (error) => {
         console.log(error);
+        this.loadingController.dismiss()
       }
     );
   }
@@ -73,6 +75,7 @@ export class SearchPage implements OnInit {
         this.loadedOwners = data;
       }, error => {
         console.log(error);
+        this.loadingController.dismiss()
       });
     }
   }
