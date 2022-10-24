@@ -25,4 +25,4 @@ Sin embargo he añadido cosas que sí me han parecido necesarias:
 
 2- Añadir una propiedad a los dueños si ya los tengo en mi lista de favoritos y si se le hace click otra vez aparece un corazón delante del nombre indicando que ya están en mi lista. Si de todas formas se hace click en Añadir a favoritos nos salta una alerta.
 
-3- También he fijado la zona de detalles para crear una mejor experiencia de usuario. Ya que con el infinite scroll si quería agragar a un usuario de los útimos, tenía que subir toda la página y de este modo siempre aparece en el mismo sitio. 
+3- También he fijado la zona de detalles para crear una mejor experiencia de usuario. Ya que con el infinite scroll si quería añadir a favoritos a un usuario de los útimos, tenía que subir toda la página y de este modo siempre aparece en el mismo sitio. 
