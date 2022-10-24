@@ -2,12 +2,12 @@
 
 Antes de nada solo decir que me he divertido realizando la prueba, gracias.
 
-Para montar la aplicación loving-kittens asegurarse de tener intalado NodeJS la LTS version https://nodejs.org/en/ así como npm.
+Para montar la aplicación loving-kittens asegurarse de tener instalado NodeJS la LTS version https://nodejs.org/en/ así como npm.
 
-A continuación instalamos la CLI de Ionic con 
+A continuación instalamos la CLI de Ionic con el siguente comando en tu terminal preferida
 $npm install -g ionic.
 
-Navega a tu carpeta de preferencia con tu terminal y haz un clone del repositorio con 
+Navega a tu carpeta de preferencia y haz un clone del repositorio con 
 $git clone git@github.com:Jmvega-code/loving-kittens.git
 
 Navega a la carpeta que se acaba de crear como resultado del clone
