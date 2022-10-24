@@ -19,6 +19,12 @@ $npm install
 Y finalmente montamos la app en memoria con el comando
 $ionic serve
 
+# IMPORTANTE: No te olvides de ajustar el theme de tu ordenador a darkmode para una mejor experiencia con los colores elegidos:
+
+chrome://settings/appearance
+
+Tema Just Black https://chrome.google.com/webstore/detail/just-black/aghfnjkcakhmadgdomlmlhhaocbkloab
+
 En cuanto a los retos los he hecho todos, incluido el de optimizar el update del usuario solamente si es Lunes o Jueves. Los he hecho a la vez. En la página de Dueños he hecho el de infinite scrolling y en la de Búsqueda he hecho las dos juntas en lugar de crear otra del botón Soy pro.
 También he considerado menos interesante, por la falta de tiempo, el jugar con los strings y crear direcciones web, separar el nombre, etc.
 Sin embargo, he añadido cosas que sí me han parecido necesarias: 
