@@ -11,9 +11,7 @@
       <p>Email: {{ selectedFavoriteOwner.email }}</p>
       <p>Status: {{ selectedFavoriteOwner.status }}</p>
 
-      <img
-        src="https://robohash.org/{{selectedFavoriteOwner.id}}?set=set4&size=180x180"
-      />
+      <img src="https://robohash.org/{{selectedFavoriteOwner.id}}?set=set4&size=180x180"/>
 
       <ion-button
         (click)="onClickFavorite(selectedFavoriteOwner)"

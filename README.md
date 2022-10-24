@@ -25,3 +25,7 @@ Sin embargo he añadido cosas que sí me han parecido necesarias:
 2- Añadir una propiedad a los dueños si ya los tengo en mi lista de favoritos y si se le hace click otra vez aparece un corazón delante del nombre indicando que ya están en mi lista. Si de todas formas se hace click en Añadir a favoritos nos salta una alerta.
 
 3- También he fijado la zona de detalles para crear una mejor experiencia de usuario. Ya que con el infinite scroll si quería añadir a favoritos a un usuario de los útimos, tenía que subir toda la página y de este modo siempre aparece en el mismo sitio. 
+
+4- Añadí una foto del gato de cada usuario usando un web service que genera imágenes por id
+
+5- Para diferenciar los usuarios según su status activos o no, a la info de usuarios que estaban 'inactive' les he puesto un tono oscuro acorde al theme de la app.
