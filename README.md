@@ -10,6 +10,9 @@ $npm install -g ionic.
 Navega a tu carpeta de preferencia con tu terminal y haz un clone del repositorio con 
 $git clone git@github.com:Jmvega-code/loving-kittens.git
 
+Navega a la carpeta que se acaba de crear como resultado del clone
+$cd loving-kittens
+
 Seguidamente creamos la carpeta node_modules con
 $npm install
 
