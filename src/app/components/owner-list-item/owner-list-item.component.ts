@@ -39,7 +39,7 @@ export class OwnerListItemComponent implements OnInit {
         .then((loadingEl) => {
           loadingEl.present();
           this.ownersService
-            .setClickedOwnerForDetails(owner.id)
+            .setClickedOwnerForDetails(null, owner.id)
             .subscribe((owner) => {
               console.log('clicked', owner);
               loadingEl.dismiss();
