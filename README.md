@@ -17,7 +17,7 @@ Y finalmente montamos la app en memoria con el comando
 $ionic serve
 
 En cuanto a los retos los he hecho todos menos el de optimizar las llamadas al servidor los días de la semana que se actualiza.
-Sin embargo los he hecho a la vez. En la página de Dueños he hecho el de infinite scrolling y en la de busqueda he hecho las dos juntas en lugar de crear otra ruta /pro.
+Sin embargo los he hecho a la vez. En la página de Dueños he hecho el de infinite scrolling y en la de Búsqueda he hecho las dos juntas en lugar de crear otra del botón Soy pro.
 También he considerado menos interesante, por la falta de tiempo, el jugar con los strings y crear direcciones web, separar el nombre, etc.
 Sin embargo he añadido cosas que sí me han parecido necesarias: 
 
